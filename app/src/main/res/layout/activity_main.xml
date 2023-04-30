@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -21,24 +22,24 @@
         android:orientation="horizontal"
         >
 
-    <Spinner
-        android:id="@+id/connectport"
-        android:layout_width="60dp"
+        <Spinner
+            android:id="@+id/connectport"
+            android:layout_width="wrap_content"
 
-        android:layout_marginLeft="3dp"
-        android:layout_height="match_parent"
-        android:entries="@array/port"
-        android:background="@drawable/spiner_selector"
-        android:spinnerMode="dropdown"
-         />
-    <Button
-        android:id="@+id/buttonSB"
-        android:layout_marginLeft="10dp"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:visibility="visible"
-        style="@style/ButtonText"
-        android:text="@string/sb" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/spiner_selector"
+            android:entries="@array/port"
+            android:spinnerMode="dropdown" />
+
+        <Button
+            android:id="@+id/buttonSB"
+            style="@style/ButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/sb"
+            android:visibility="visible" />
     <EditText
         android:layout_marginLeft="10dp"
         android:id="@+id/showET"

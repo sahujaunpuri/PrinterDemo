@@ -19,11 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+//import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.google.android.material.snackbar.Snackbar;
+//import com.google.android.material.snackbar.Snackbar;
 import com.posprinter.printdemo.R;
 import com.posprinter.printdemo.utils.StringUtils;
 import com.zxy.tiny.Tiny;
@@ -42,7 +43,7 @@ import java.util.List;
 public class PosActivity extends AppCompatActivity {
 
     Button btText,btBarCode,btImage,btQRcode,checklink;
-    CoordinatorLayout container;
+   // CoordinatorLayout container;
     ImageView imageView;
     EditText text;
     RelativeLayout rl;
@@ -72,7 +73,7 @@ public class PosActivity extends AppCompatActivity {
     }
 
     private void initview(){
-        container= (CoordinatorLayout) findViewById(R.id.activity_pos);
+       // container= (CoordinatorLayout) findViewById(R.id.activity_pos);
         btText= (Button) findViewById(R.id.btText);
         btBarCode= (Button) findViewById(R.id.btbarcode);
         btImage= (Button) findViewById(R.id.btpic);
@@ -422,8 +423,8 @@ print the bitmap ,the connection is USB
      * @param showstring content
      */
     private void showSnackbar(String showstring){
-        Snackbar.make(container, showstring,Snackbar.LENGTH_LONG)
-                .setActionTextColor(getResources().getColor(R.color.button_unable)).show();
+
+        Toast.makeText(getApplicationContext(), showstring, Toast.LENGTH_LONG);
     }
 
    public Handler handler=new Handler(){

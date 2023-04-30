@@ -21,11 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 
 import com.google.android.material.snackbar.Snackbar;
 import com.posprinter.printdemo.R;
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             BtSb;// start posprint button
     Spinner conPort;//spinner connetion port
     EditText showET;// show edittext
-    CoordinatorLayout container;
+   // CoordinatorLayout container;
 
     private View dialogView;
     BluetoothAdapter bluetoothAdapter;
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BtSb= (Button) findViewById(R.id.buttonSB);
         conPort= (Spinner) findViewById(R.id.connectport);
         showET= (EditText) findViewById(R.id.showET);
-        container= (CoordinatorLayout) findViewById(R.id.container);
+       // container= (CoordinatorLayout) findViewById(R.id.container);
     }
 
 
@@ -221,19 +223,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binder.disconnectCurrentPort(new UiExecute() {
                     @Override
                     public void onsucess() {
-                        showSnackbar(getString(R.string.toast_discon_success));
+                      //  showSnackbar(getString(R.string.toast_discon_success));
+                        msg(getString(R.string.toast_discon_success) );
+                        Toast.makeText(getApplicationContext(), getString(R.string.toast_discon_success), Toast.LENGTH_LONG).show();
                         showET.setText("");
                         BTCon.setText(getString(R.string.connect));
                     }
 
                     @Override
                     public void onfailed() {
-                        showSnackbar(getString(R.string.toast_discon_faile));
+                      //  showSnackbar(getString(R.string.toast_discon_faile));
+                        msg(getString(R.string.toast_discon_faile) );
 
                     }
                 });
             }else {
-                showSnackbar(getString(R.string.toast_present_con));
+               // showSnackbar(getString(R.string.toast_present_con));
+                msg(getString(R.string.toast_present_con) );
             }
         }
         //start to pos printer
@@ -243,7 +249,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("isconnect",ISCONNECT);
                 startActivity(intent);
             }else {
-                showSnackbar(getString(R.string.connect_first));
+                //showSnackbar(getString(R.string.connect_first));
+                msg(getString(R.string.connect_first) );
             }
 
         }
@@ -254,7 +261,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("isconnect",ISCONNECT);
                 startActivity(intent);
             }else {
-                showSnackbar(getString(R.string.connect_first));
+               // showSnackbar(getString(R.string.connect_first));
+                msg(getString(R.string.connect_first) );
             }
         }
         //start to barcode(TSC) printer
@@ -264,14 +272,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("isconnect",ISCONNECT);
                 startActivity(intent);
             }else {
-                showSnackbar(getString(R.string.connect_first));
+               // showSnackbar(getString(R.string.connect_first));
+                msg(getString(R.string.connect_first) );
             }
         }
 
 
     }
 
-
+public void msg(String msg ){
+    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG);
+}
 
 
     /*
@@ -282,7 +293,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String ipAddress=showET.getText().toString();
         if (ipAddress.equals(null)||ipAddress.equals("")){
 
-            showSnackbar(getString(R.string.none_ipaddress));
+          //  showSnackbar(getString(R.string.none_ipaddress));
+            msg(getString(R.string.none_ipaddress) );
         }else {
             //ipAddress :ip address; portal:9100
             binder.connectNetPort(ipAddress,9100, new UiExecute() {
@@ -290,7 +302,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onsucess() {
 
                     ISCONNECT=true;
-                    showSnackbar(getString(R.string.con_success));
+
+                    Toast.makeText(getApplicationContext(), getString(R.string.con_success), Toast.LENGTH_LONG).show();
+                   // showSnackbar(getString(R.string.con_success));
+                    msg(getString(R.string.con_success) );
                     //in this ,you could call acceptdatafromprinter(),when disconnect ,will execute onfailed();
                     binder.acceptdatafromprinter(new UiExecute() {
                         @Override
@@ -301,7 +316,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onfailed() {
                             ISCONNECT=false;
-                            showSnackbar(getString(R.string.con_failed));
+                          //  showSnackbar(getString(R.string.con_failed));
+                            msg(getString(R.string.con_failed) );
                             Intent intent=new Intent();
                             intent.setAction(DISCONNECT);
                             sendBroadcast(intent);
@@ -314,7 +330,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onfailed() {
                     //Execution of the connection in the UI thread after the failure of the connection
                     ISCONNECT=false;
-                    showSnackbar(getString(R.string.con_failed));
+                  //  showSnackbar(getString(R.string.con_failed));
+                    msg(getString(R.string.con_failed) );
                    BTCon.setText(getString(R.string.con_failed));
 
 
@@ -332,13 +349,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void connetUSB() {
         usbAdrresss=showET.getText().toString();
         if (usbAdrresss.equals(null)||usbAdrresss.equals("")){
-            showSnackbar(getString(R.string.usbselect));
+           // showSnackbar(getString(R.string.usbselect));
+            msg(getString(R.string.usbselect) );
         }else {
             binder.connectUsbPort(getApplicationContext(), usbAdrresss, new UiExecute() {
                 @Override
                 public void onsucess() {
                     ISCONNECT=true;
-                    showSnackbar(getString(R.string.con_success));
+                  //  showSnackbar(getString(R.string.con_success));
+                    msg(getString(R.string.con_success) );
                     BTCon.setText(getString(R.string.con_success));
                     setPortType(PosPrinterDev.PortType.USB);
                 }
@@ -346,7 +365,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onfailed() {
                     ISCONNECT=false;
-                    showSnackbar(getString(R.string.con_failed));
+                  //  showSnackbar(getString(R.string.con_failed));
+                    msg(getString(R.string.con_failed) );
                     BTCon.setText(getString(R.string.con_failed));
 
 
@@ -360,13 +380,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void connetBle(){
         String bleAdrress=showET.getText().toString();
         if (bleAdrress.equals(null)||bleAdrress.equals("")){
-            showSnackbar(getString(R.string.bleselect));
+           // showSnackbar(getString(R.string.bleselect));
+            msg(getString(R.string.bleselect) );
         }else {
             binder.connectBtPort(bleAdrress, new UiExecute() {
                 @Override
                 public void onsucess() {
                     ISCONNECT=true;
-                    showSnackbar(getString(R.string.con_success));
+                  //  showSnackbar(getString(R.string.con_success));
+                    msg(getString(R.string.con_success) );
                     BTCon.setText(getString(R.string.con_success));
 
                     binder.write(DataForSendToPrinterPos80.openOrCloseAutoReturnPrintState(0x1f), new UiExecute() {
@@ -381,7 +403,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     @Override
                                     public void onfailed() {
                                         ISCONNECT=false;
-                                        showSnackbar(getString(R.string.con_has_discon));
+                                      //  showSnackbar(getString(R.string.con_has_discon));
+                                        msg(getString(R.string.con_has_discon) );
                                     }
                                 });
                         }
@@ -399,7 +422,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void onfailed() {
 
                     ISCONNECT=false;
-                    showSnackbar(getString(R.string.con_failed));
+                  //  showSnackbar(getString(R.string.con_failed));
+                    msg(getString(R.string.con_failed) );
                 }
             });
         }
@@ -596,14 +620,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /**
-     * show the massage
-     * @param showstring content
-     */
-    private void showSnackbar(String showstring){
-        Snackbar.make(container, showstring,Snackbar.LENGTH_LONG)
-                .setActionTextColor(getResources().getColor(R.color.button_unable)).show();
-    }
+
 
     @Override
     protected void onDestroy() {

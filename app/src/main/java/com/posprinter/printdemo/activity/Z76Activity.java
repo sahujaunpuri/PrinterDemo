@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+//import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.google.android.material.snackbar.Snackbar;
+//import com.google.android.material.snackbar.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 import com.posprinter.printdemo.R;
@@ -31,7 +32,7 @@ import java.util.List;
 public class Z76Activity extends AppCompatActivity {
 
     Button bttext,btimage , btCls;
-    CoordinatorLayout container;
+   // CoordinatorLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class Z76Activity extends AppCompatActivity {
         bttext= (Button) findViewById(R.id.bttext);
         btimage= (Button) findViewById(R.id.btpic);
         btCls= (Button) findViewById(R.id.cls);
-        container= (CoordinatorLayout) findViewById(R.id.activity_z76);
+      //  container= (CoordinatorLayout) findViewById(R.id.activity_z76);
 
         bttext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,8 +191,7 @@ public class Z76Activity extends AppCompatActivity {
      * @param showstring show content
      */
     private void showSnackbar(String showstring){
-        Snackbar.make(container, showstring,Snackbar.LENGTH_LONG)
-                .setActionTextColor(getResources().getColor(R.color.button_unable)).show();
+        Toast.makeText(getApplicationContext(), showstring, Toast.LENGTH_LONG);
     }
 
 }

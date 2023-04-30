@@ -8,14 +8,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+//import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
-import com.google.android.material.snackbar.Snackbar;
+//import com.google.android.material.snackbar.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 import com.posprinter.printdemo.R;
@@ -38,7 +39,7 @@ public class TscActivity extends AppCompatActivity {
             bttscread,
             btTest,
             bttscpic;
-    CoordinatorLayout container;
+  //  CoordinatorLayout container;
 
     RelativeLayout relativeLayout;
     ImageView imageView;
@@ -64,7 +65,7 @@ public class TscActivity extends AppCompatActivity {
         bttscpic= (Button) findViewById(R.id.tscpic);
         relativeLayout= (RelativeLayout) findViewById(R.id.rlimage);
         imageView= (ImageView) findViewById(R.id.image);
-        container = (CoordinatorLayout) findViewById(R.id.activity_tsc);
+       // container = (CoordinatorLayout) findViewById(R.id.activity_tsc);
         btTest= (Button) findViewById(R.id.test);
     }
 
@@ -313,7 +314,7 @@ self-check
      * @param showstring content
      */
     private void showSnackbar(String showstring){
-        Snackbar.make(container, showstring,Snackbar.LENGTH_LONG)
-                .setActionTextColor(getResources().getColor(R.color.button_unable)).show();
+
+        Toast.makeText(getApplicationContext(), showstring, Toast.LENGTH_LONG);
     }
 }
